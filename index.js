@@ -44,22 +44,22 @@ app.get('/', async (req, res) => {
       const cryptoData = data.find(item => item.symbol === symbol); 
       //pour chaque element dans crypt, cherche dans data(API) symbol correspondant.
       //find ici cherche le prend le array et l'affecte a cryptoData
-      console.log("cryptoData:", cryptoData);
+      
       
       // ici crypt array = symbol du API, prend tout les array qui correspond
       if (cryptoData){
         let cryptoPrice = cryptoData.last_trade_price; //dans le array on va chercher le prix(ceci retourne tout les valeur prix)
         let formattedPrice = new Intl.NumberFormat().format(cryptoPrice); //conversion en une valeur monetaire
-        console.log(formattedPrice);
+        
         let roundedVolume = (cryptoData.volume_24h).toFixed(2); // on affecte ici le pourcentage a cette variable
-        console.log(roundedVolume)
+        
 
       //affectation des valeur precedente a crypapp
       const cryptoIndex = crypapp.findIndex(item => item.fname === symbol.split('-')[0]); //findindex permet de retrouver l'index.
       //compare la valeur BTC de (symbole) par example a celui de fname dans cryptapp)
       //si la valeur correspond, il trouve son index dans le crypapp dans notre cas BTC
       // a pour index 0 dans crypapp et affecte cette valeur a cryptoindex.
-      console.log(`Symbol: ${symbol.split('-')[0]}, Found Index: ${cryptoIndex}`);
+      
       if (cryptoIndex !== -1){ //si la valeur de l'index existe
         crypapp[cryptoIndex].price = `${formattedPrice}`; //on execute ce code afin d'affecter la valeur a la position adequate
         crypapp[cryptoIndex].taux = `${roundedVolume}`;
@@ -70,7 +70,7 @@ app.get('/', async (req, res) => {
     // Pass the data to the EJS template
     res.render('index',{crypapp : crypapp});
   } catch (error) {
-    console.error('Error fetching data:', error.message);
+    
     res.status(500).send('Error fetching cryptocurrency data');
 
     //update the corresponding entry
@@ -81,8 +81,7 @@ app.get('/', async (req, res) => {
   app.get("/store/:link", (req, res) => { // Store route with dynamic parameter (link) which is the name of the page 
     const name = req.params.link; //recupere le nom de la page dans le url et le stock dans name 
     const find = crypapp.find(element => element.link === name); //cherche dans crypapp le nom qui correspond a name
-    console.log("name:", name);
-    console.log("find:", find);
+    
     if (find){
       res.render("store.ejs", {store: find});
 
@@ -96,8 +95,7 @@ app.get('/', async (req, res) => {
 // Checkout route
 app.post('/checkout', async (req, res) => {
   const { amount, quantity, storeName} = req.body;
-  console.log('Amount:', amount);  // Debugging
-  console.log('Quantity:', quantity)
+ 
   
   if (!amount) {
       return res.status(400).send('Amount is required.');
@@ -125,7 +123,7 @@ app.post('/checkout', async (req, res) => {
 
       res.json({ url: session.url }); // Send the checkout URL to the client
   } catch (error) {
-      console.error('Error creating Stripe session:', error);
+      
       res.status(500).send('Failed to create Stripe session.');
   }
 });
@@ -133,7 +131,7 @@ app.post('/checkout', async (req, res) => {
 app.get('/success', async (req, res) => { // Success route
   const result = Promise.all([
     stripe.checkout.sessions.retrieve(req.query.session_id, {expand: ['payment_intent.payment_method']}), // Retrieve the session
-    console.log(req.query.session_id),
+    
     stripe.checkout.sessions.listLineItems(req.query.session_id) // Retrieve the line items
   ]);
   //console.log(JSON.stringify(await result));
