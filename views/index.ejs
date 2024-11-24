@@ -1,0 +1,62 @@
+<%- include("partial/header.ejs") %>
+<body>
+   <div class="container">
+    <div class="user">
+        <p class="number">243,000,000</p>
+        <p>Users </p>
+        <p>Trust Us</p>
+        <div class="bar">
+            <input type="text" class="searche-bar" placeholder=" Email/ phone number">
+            <button>Sign Up</button>
+        </div>
+    </div>
+    <div class="right_grid">
+        <div class="popular">
+            <div class="title">
+                <div class="populist">
+                    <h5 class="tab" id="popular-tab"> Popular</h5>
+                    <h5 class="tab" id="new-listing-tab">New Listing</h5>
+                </div>
+                <h5 id="view-all">View all +350 coins <i class="fa-solid fa-chevron-right"></i></h5>
+            </div>
+            <div class="active-indicator" id="active-indicator"></div>
+
+
+            <div class="bitcoin">
+                <% crypapp.forEach(element => {%>
+                    <form action="/submit" method="POST" id="submitlink">
+                        <div class="etherum">
+                            <div>
+                                <img src="<%= element.logo%>" alt="">
+                                <a href="store/<%= element.link%>" class="btc"><span><%= element.fname%></span></a> 
+                                  <%# This is the link to the store page %>
+                                <a href="store/<%= element.link%>" class="bitcoins"><span><%= element.name%></span></a>
+                            </div>
+                            <div class="bivalue">$<%= element.price%></div>
+                            <div class="bitpercent">+<%= element.taux%>%</div>  
+                        </div> 
+                    </form>
+                    
+                    <% }); %>
+            </div> 
+                                
+        </div>
+        <div class="meteo"> 
+            <div> 
+                <i class="fa-solid fa-temperature-three-quarters"></i> Temperature
+                <span> 4°</span>
+            </div>
+            <div> 
+                <i class="fa-solid fa-wind"></i> Vent
+                <span>ONO 2km/h</span>
+            </div>
+            <div> 
+                <i class="fa-solid fa-earth-europe"></i></i> Montréal
+                <span>Nuageux</span>
+            </div>
+        </div> 
+    </div> 
+   </div>
+   <script src="./styles.js"></script>
+
+</body>

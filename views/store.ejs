@@ -1,0 +1,54 @@
+<%- include("partial/header.ejs") %>
+<body>
+  <div class="storediv">
+    <div>
+      <img src="<%= store.logo%>" alt="Ethereum Logo" />
+      <h3 id="storeName"><%= store.name  %> Price</h3>
+    </div>
+    <div>
+      <span class="currency">Currency</span> 
+      <input type="button" value="USD" class="currency-button" />
+    </div>
+    <div>
+      <button class="signup-button"><i class="fa-solid fa-share-nodes"></i> Share</button>
+    </div>
+  </div>
+          
+      
+          
+       
+
+      <div class="pricediv">
+        <div class="price-row">
+          <h3 id="price"> $<%= store.price %></h3>
+          <span class="percent">+<%= store.taux %>%</span>
+        </div>
+        <div class="buy">
+          <div class="image">
+            <img src="/pictures/graphe.png" alt="Graph Trend">
+          </div>
+          <div class="buytable">
+              <div class="input-wrapper">
+                <input type="text" name="name" id="firstnumber" onkeypress="return /[0-9]/i.test(event.key)" placeholder="0" >
+                <div class="inner-placeholder">
+                  <span class="label-name">You Buy</span>
+                  <span class="label-date"><%= store.fname%></span>
+                </div>
+              </div>
+              <span class="conversion">1 <%= store.fname%> ≈ USD <%= store.price%></span>
+              <div class="input-wrapper">
+                <input type="text" name="name" id="secondnumber" onkeypress="return /[0-9]/i.test(event.key)" placeholder="10 - 50,000 ">
+                <div class="inner-placeholder">
+                  <span class="label-name">You Spend</span>
+                  <span class="label-date">USD</span>
+                </div>
+              </div>
+              <form action="/checkout" method="POST"> 
+                <input type="submit" value="Buy" class="buy-btn">
+              </form>
+          </div>
+        </div>  
+        </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/styles.js"></script>
+</body>
