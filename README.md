@@ -1,11 +1,11 @@
 # Cryptocurrency Capstone Project
 
-This project is a cryptocurrency web application built with Node.js, Express.js, and APIs like Stripe and Blockchain. It enables users to view live cryptocurrency data and seamlessly complete checkout processes for products or services using cryptocurrency.
+This project is a cryptocurrency web application built with Node.js, Express.js, and APIs like Stripe and Blockchain. It enables users to view live cryptocurrency data and seamlessly complete checkout processes for products or services using traditional payment methods through Stripe.
+Explore and interact with live market data for various cryptocurrencies.
 
 ## Features
 
 - Live Cryptocurrency Data: Fetches real-time cryptocurrency prices and trends using the Blockchain API.
-- Dynamic Checkout Flow: Uses the Stripe API for secure cryptocurrency payments.
 - Responsive UI: A clean and user-friendly interface.
 - Session Management: Securely retrieves payment sessions and their associated data.
 - Error Handling: Provides detailed error messages for debugging and user-friendly notifications.
@@ -40,9 +40,9 @@ npm init -y
 npm install express ejs dotenv stripe axios
 ```
 4. Create a .env file in the project root and add the following environment variables:
-STRIPE_SECRET_KEY=your_stripe_secret_key
-BLOCKCHAIN_API_KEY=your_blockchain_api_key
-BASE_URL=http://localhost:3000
+STRIPE_SECRET_KEY = your_stripe_secret_key
+BLOCKCHAIN_API_KEY = your_blockchain_api_key
+BASE_URL = http://localhost:3000
 
 6. Start the development server:
 npm start
