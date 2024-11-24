@@ -62,4 +62,4 @@ npm start
     - If the payment is canceled, the user is redirected to the /cancel page.
 
 ### Navigate to the Site
-[Click here to visit the site](https://cryptocurrency-capstone-ksuk.onrender.com)
+[Click here to visit the site](https://cryptocurrency-capstone.onrender.com)

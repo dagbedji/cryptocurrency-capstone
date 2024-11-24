@@ -104,7 +104,7 @@ app.post('/checkout', async (req, res) => {
   }
 
   try {
-      const session = await stripe.checkout.sessions.create({
+      const session = await stripe.checkout.sessions.create({ // Create a new Stripe session
           payment_method_types: ['card'],
           line_items: [
               {
@@ -119,7 +119,7 @@ app.post('/checkout', async (req, res) => {
               },
           ],
           mode: 'payment',
-          success_url: `${process.env.BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
+          success_url: `${process.env.BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`, // Redirect to this page after payment
           cancel_url: `${process.env.BASE_URL}/cancel`,
       });
 
@@ -133,6 +133,7 @@ app.post('/checkout', async (req, res) => {
 app.get('/success', async (req, res) => { // Success route
   const result = Promise.all([
     stripe.checkout.sessions.retrieve(req.query.session_id, {expand: ['payment_intent.payment_method']}), // Retrieve the session
+    console.log(req.query.session_id),
     stripe.checkout.sessions.listLineItems(req.query.session_id) // Retrieve the line items
   ]);
   //console.log(JSON.stringify(await result));
